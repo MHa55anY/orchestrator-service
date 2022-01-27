@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package orchestra;
+
+//Service Definition
+service Metrics{
+    rpc GetUserByName(User) returns (UserRes) {}
+}
+
+
+//Client request
+message User {
+    string name = 1;
+    string grade = 2;
+    int64 roll = 3;
+}
+
+
+//Server Response
+message UserRes {
+    string nameOf = 1;
+}
