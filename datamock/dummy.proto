@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package dummy;
+
+//Service Definition
+service Metrics{
+    rpc GetMockUserData(User) returns (UserRes) {}
+}
+
+//Client request
+message User {
+    string name = 1;
+}
+
+
+//Server Response
+message UserRes {
+    string nameOf = 1;
+    int64 grade = 2;
+    int64 roll = 3;
+    string err = 4;
+}
