@@ -1,3 +1,5 @@
+"""Implementation of Client"""
+
 from __future__ import print_function
 
 import logging
@@ -7,13 +9,14 @@ import orchestra_pb2
 import orchestra_pb2_grpc
 
 
-# Start the client stub- will send a user defined name and predifined grade and roll
+# Start the client stub- will send the name of user to server @ 9000
 def run():
-    with grpc.insecure_channel('localhost:50051') as channel:
+    with grpc.insecure_channel('localhost:9000') as channel:
         stub = orchestra_pb2_grpc.MetricsStub(channel)
-        response = stub.GetUserByName(orchestra_pb2.User(name=input('enter dummy name\n'),grade="12", roll=34))
+        response = stub.GetUserByName(orchestra_pb2.User(name=input('enter dummy name\n')))
 
-    print("Client received: " + response.nameOf)
+    print("Client received from 9000<--9001<--10000: \n" + str(response))
+
 
 
 if __name__ == '__main__':

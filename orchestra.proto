@@ -5,6 +5,7 @@ package orchestra;
 //Service Definition
 service Metrics{
     rpc GetUserByName(User) returns (UserRes) {}
+    rpc UserName(User) returns (UserRes) {}
 }
 
 
@@ -19,4 +20,7 @@ message User {
 //Server Response
 message UserRes {
     string nameOf = 1;
+    int64 grade = 2;
+    int64 roll = 3;
+    string err = 4;
 }

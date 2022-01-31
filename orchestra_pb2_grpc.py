@@ -20,6 +20,11 @@ class MetricsStub(object):
                 request_serializer=orchestra__pb2.User.SerializeToString,
                 response_deserializer=orchestra__pb2.UserRes.FromString,
                 )
+        self.UserName = channel.unary_unary(
+                '/orchestra.Metrics/UserName',
+                request_serializer=orchestra__pb2.User.SerializeToString,
+                response_deserializer=orchestra__pb2.UserRes.FromString,
+                )
 
 
 class MetricsServicer(object):
@@ -32,11 +37,22 @@ class MetricsServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def UserName(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_MetricsServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'GetUserByName': grpc.unary_unary_rpc_method_handler(
                     servicer.GetUserByName,
+                    request_deserializer=orchestra__pb2.User.FromString,
+                    response_serializer=orchestra__pb2.UserRes.SerializeToString,
+            ),
+            'UserName': grpc.unary_unary_rpc_method_handler(
+                    servicer.UserName,
                     request_deserializer=orchestra__pb2.User.FromString,
                     response_serializer=orchestra__pb2.UserRes.SerializeToString,
             ),
@@ -63,6 +79,23 @@ class Metrics(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/orchestra.Metrics/GetUserByName',
+            orchestra__pb2.User.SerializeToString,
+            orchestra__pb2.UserRes.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def UserName(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/orchestra.Metrics/UserName',
             orchestra__pb2.User.SerializeToString,
             orchestra__pb2.UserRes.FromString,
             options, channel_credentials,
