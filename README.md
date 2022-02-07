@@ -4,6 +4,7 @@ Request Sequence: Client --> PORT9000 --> PORT9001--> PORT10000
 Response Sequence: Client <-- PORT9000 <-- PORT9001 <-- PORT10000
 
 **Directions for installing the gRPC dependencies:**
+Install all dependencies by running "make install" in the terminal OR by following the below steps:
 1. Ensure pip is updated -> python -m pip install --upgrade pip
 2. Install gRPC using pip by running -> python -m pip install grpcio
 3. Next, install the grpc tools required by running -> python -m pip install grpcio-tools
